@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Eventos</h1>
+
+<table>
+<% @events.each do |event| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt><%= truncate event.descripcion, lenght: 100 %></dt>
+        <dt>Inicio: <%= event.fecha_inicio %></dt>
+        <dt>Fin: <%= event.fecha_fin %></dt>
+        <dt>Lugar: <%= event.lugar %></dt>
+      </dl>
+    </td>
+    <td class="list_actions">
+      <%= link_to 'Ver', event %><br/>
+      <%= link_to 'Editar', edit_event_path(event) %><br/>
+      <%= link_to 'Eliminar', event, method: :delete, 
+          data: { confirm: '¿Está seguro que desea eliminar este evento?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br>
+
+<%= link_to 'Crear Evento', new_event_path %>
